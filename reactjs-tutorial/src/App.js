@@ -1,36 +1,46 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React, { Component } from 'react';
 
 class App extends React.Component {
-  constructor(props){
-        super(props);
-        this.state = {
-            msg: "W3Adda"
-        };
-        this.updateMsg = this.updateMsg.bind(this);
+   constructor() {
+      super();
+		
+      this.state = {
+         employees:[
+            {
+               empName: 'John',
+               id: 1
+            },
+            {
+               empName: 'Steve',
+               id: 2
+            },
+            {
+               empName: 'Alex',
+               id: 3
+            }
+         ]
+      }
    }
-
-    updateMsg() {
-        this.setState({
-            msg: "ReactJS"
-        });
-    }    
-
-    render() {
-        return (
-           <div>
-             <h1>Hello {this.state.msg}!</h1>
-             <button onClick={this.updateMsg}>Click me!</button>
-             <div>Name: {this.props.name}</div>
-           </div>   
-        )
-    }
+   render() {
+      return (
+         <div>
+           <h1>W3Adda - React Keys</h1>
+            <div>
+               {this.state.employees.map((data, i) => <Employee 
+                  key = {i} empData = {data}/>)}
+            </div>
+         </div>
+      );
+   }
 }
-
-App.defaultProps = {
-  name: "World",
-};
-
-ReactDOM.render(<App name="Foo"/>, document.getElementById('hello-world-wrapper'));
-
+class Employee extends React.Component {
+   render() {
+      return (
+         <div>
+            <div>{this.props.empData.empName}</div>
+            <div>{this.props.empData.id}</div>
+         </div>
+      );
+   }
+}
 export default App;
