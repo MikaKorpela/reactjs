@@ -30,27 +30,3 @@
     transform: rotate(360deg);
   }
 }
-
-.Header {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  width: 100%;
-}
-
-.Main {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  width: 100%;
-}
-
-.Footer {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  width: 100%;
-}
