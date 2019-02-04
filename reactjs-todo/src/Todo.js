@@ -12,17 +12,17 @@ import PropTypes from 'prop-types'
 //   </li>
 // )
 
-function Todo({onClick, completed, text})
+function Todo({onTodoClick, completed, text})
 {
   return (
-    <li onClick={onClick} style={{textDecoration: completed ? 'line-through' : 'none'}}>
+    <li onClick={onTodoClick} style={{textDecoration: completed ? 'line-through' : 'none'}}>
       {text}
     </li>
   );
 }
 
 Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onTodoClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
 }
