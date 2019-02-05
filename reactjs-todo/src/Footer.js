@@ -1,6 +1,6 @@
 import React from 'react'
 import FilterLink from './containers/FilterLink'
-import { VisibilityFilters } from './actions'
+import { VisibilityFilters } from './actions/visibilityFilters.js'
 
 class Footer extends React.Component
 {

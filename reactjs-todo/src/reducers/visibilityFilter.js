@@ -1,4 +1,4 @@
-import { VisibilityFilters } from '../actions'
+import { VisibilityFilters } from '../actions/visibilityFilters.js'
 
 function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action)
 {

@@ -5,7 +5,7 @@ function todos(state = [], action)
   switch (action.type) {
     case 'ADD_TODO': {
       const newState = Object.assign([], state);
-      const newTodo = {id: action.id, text: action.text, completed: false};
+      const newTodo = {id: action.id, text: action.text, misc: action.misc, completed: false};
       // newTodo.id = action.id;
       // newTodo.text = action.text;
       // newTodo.completed = false;
