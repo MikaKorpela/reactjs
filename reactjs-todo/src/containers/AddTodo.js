@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions/addTodo.js'
+import { addTodo } from '../actions'
 
 function AddTodo({dispatch})
 {
