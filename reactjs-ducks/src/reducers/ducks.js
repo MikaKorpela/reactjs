@@ -1,42 +1,43 @@
+import {CREATE_DUCK, UPDATE_DUCK, DELETE_DUCK} from './actions'
+
 function ducks(state = [], action)
 {
-  var index;
+  var duckIndex;
 
   switch (action.type) {
-    case 'ADD_DUCK': {
+    case CREATE_DUCK: {
       const newState = Object.assign([], state);
       const newDuck = {id: action.id, firstName: action.firstName, lastName: action.lastName};
       newState.push(newDuck);
       return newState;
     }
-    case 'TOGGLE_TODO': {
+    case UPDATE_DUCK: {
       const newState = Object.assign([], state);
 
-      for (i = 0; i < newState.length; i++)
+      for (duckIndex = 0; duckIndex < newState.length; duckIndex++)
       {
-        if (newState[i].id === action.id)
+        if (newState[duckIndex].id === action.id)
         {
-          newState[i].completed = !newState[i].completed
+          newState[duckIndex].firstName = action.firstName;
+          newState[duckIndex].lastName = action.lastName;
+
+          break;
         }
       }
 
       return newState;
     }
-    case 'DELETE_DUCK': {
+    case DELETE_DUCK: {
       const newState = Object.assign([], state);
-      var duckIndex = undefined;
 
-      for (index = 0; index < newState.length; index++)
+      for (duckIndex = 0; duckIndex < newState.length; duckIndex++)
       {
-        if (newState[index].id === action.id)
+        if (newState[duckIndex].id === action.id)
         {
-          duckIndex = index;
-        }
-      }
+          newState.splice(duckIndex, 1);
 
-      if (duckIndex !== undefined)
-      {
-        newState.splice(duckIndex, 1);
+          break;
+        }
       }
 
       return newState;
