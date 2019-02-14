@@ -1,4 +1,4 @@
-import {CREATE_DUCK, UPDATE_DUCK, DELETE_DUCK} from './actions'
+import {CREATE_DUCK, UPDATE_DUCK, DELETE_DUCK} from '../actions'
 
 function ducks(state = [], action)
 {

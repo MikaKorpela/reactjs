@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { createDuck } from '../actions'
 
 function AddTodo({dispatch})
 {
@@ -18,7 +18,7 @@ function AddTodo({dispatch})
           return
         }
         // dispatch to store at submit.
-        dispatch(addDuck(firstName.value, lastName.value))
+        dispatch(createDuck(firstName.value, lastName.value))
         // reset value.
         firstName.value = ''
         lastName.value = ''
