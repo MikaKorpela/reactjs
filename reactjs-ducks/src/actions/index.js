@@ -10,7 +10,6 @@ export function createDuck(firstName, lastName)
   return {
     type: CREATE_DUCK,
     id: nextDuckId++,
-    locked: true,
     firstName,
     lastName
   }
@@ -21,7 +20,6 @@ export function updateDuck(id, firstName, lastName)
     return {
         type: UPDATE_DUCK,
         id: id,
-        locked: true,
         firstName: firstName,
         lastName: lastName
     }
@@ -35,10 +33,12 @@ export function deleteDuck(id)
   }
 }
 
-export function editDuck(id)
+export function editDuck(id, firstName, lastName)
 {
   return {
     type: EDIT_DUCK,
-    locked: false
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
   }
 }

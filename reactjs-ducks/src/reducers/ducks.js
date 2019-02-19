@@ -39,7 +39,7 @@ function ducks(state = [], action)
           break;
         }
       }
-
+      
       return newState;
     }
     default:

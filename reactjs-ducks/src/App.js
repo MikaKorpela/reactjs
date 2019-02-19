@@ -1,6 +1,7 @@
 import React from 'react'
 import DuckList from './containers/DuckList'
-import AddDuck from './containers/AddDuck'
+import NewDuck from './NewDuck'
+// import DuckForm from './containers/DuckForm'
 
 class App extends React.Component
 {
@@ -9,7 +10,8 @@ class App extends React.Component
     return (
       <div>
         <DuckList />
-        <AddDuck />
+        <NewDuck />
+        {/* <DuckForm /> */}
       </div>
     )
   }

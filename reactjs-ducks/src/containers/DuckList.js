@@ -12,7 +12,7 @@ function mapStateToProps(state)
 function mapDispatchToProps(dispatch)
 {
   return {
-    onDeleteClick: id => dispatch(deleteDuck(id))
+    onDeleteClick: (id, firstName) => dispatch(deleteDuck(id, firstName))
   }
 }
 
