@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-//import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 import Band from './Band'
 const config = require('./config.json');
@@ -45,35 +45,17 @@ export default class Bands extends Component
     return (
       <div className="container" style={{marginTop}}>
             <div className="h1">Bands</div>
-            { this.state.bands.map(band => <Band band_name={band.band_name} genre={band.genre} id={band.id} key={band.id} handleDeleteBand={this.handleDeleteBand} />) }
+            <div className="row">
+              <div className="col-md-4">
+                <Link to={`/newband`}>
+                  <div className="btn btn-sm btn-success mb-4" role="button">Add Band</div>
+                </Link>
+              </div>  
+            </div>
+            <div className="row">
+              { this.state.bands.map(band => <Band band_name={band.band_name} genre={band.genre} id={band.id} key={band.id} handleDeleteBand={this.handleDeleteBand} />) }
+            </div>
       </div>
-      // <Fragment>
-      //   <section className="section">
-      //     <div className="container">
-      //       <h2 className="title">
-      //         Bands
-      //       </h2>
-      //       <div className="columns is-1">
-      //         <div className="column box is-two-thirds has-background-primary">
-      //           <div className="tile is-ancestor">
-      //             <div className="tile is-4 is-parent is-vertical">
-      //               { this.state.bands.map(band => <Band band_name={band.band_name} genre={band.genre} id={band.id} key={band.id} handleDeleteBand={this.handleDeleteBand} />) }
-      //             </div>
-      //           </div>
-      //         </div>
-      //         <div className="column id-one-third">
-      //           <div className="buttons">
-      //             <div className="button is-primary">
-      //               <Link to='/newband'>
-      //                 Add Band
-      //               </Link>
-      //             </div>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </section>
-      // </Fragment>
     )
   }
 }

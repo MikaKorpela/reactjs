@@ -4,12 +4,12 @@ export default class Footer extends Component
 {
   render() {
 
-    const marginBottom = {
-      marginBottom: 0
-    }
+    // const marginBottom = {
+    //   marginBottom: 0
+    // }
 
     return (
-      <div className="jumbotron text-center" style={{marginBottom}}>
+      <div className="container">
         <p>Footer</p>
       </div>
     )

@@ -111,24 +111,40 @@ export default class BandEditor extends Component
                     }
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                         <label htmlFor="band-name">Name</label>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" id="band-name" value={this.state.band_name} onChange={this.onBandNameChange}/>
+                            <input type="text"
+                                   className="form-control"
+                                   id="band-name"
+                                   value={this.state.band_name}
+                                   onChange={this.onBandNameChange}/>
                         </div>
                         <label htmlFor="genre">Genre</label>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" id="genre" value={this.state.genre} onChange={this.onGenreChange}/>
+                            <input type="text"
+                                   className="form-control"
+                                   id="genre"
+                                   value={this.state.genre}
+                                   onChange={this.onGenreChange}/>
                         </div>
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.handleBandEdit}>Edit</button>
-                            <button type="button" className="btn btn-sm btn-outline-secondary" onClick={this.handleBandSave}>Save</button>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <button type="button"
+                                    className="btn btn-primary btn-sm"
+                                    onClick={this.handleBandEdit}>
+                                Edit
+                            </button>
+                            <button type="button"
+                                    className="btn btn-success btn-sm"
+                                    onClick={this.handleBandSave}>
+                                Save
+                            </button>
                             <Link to={`/bands`}>
-                                <div className="btn btn-sm btn-outline-secondary" tabIndex="-1" role="button" aria-disabled="true">Cancel</div>
+                                <button type="button" className="btn btn-warning btn-sm">Cancel</button>
                             </Link>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <div className="row">
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './Header';
+// import Header from './Header';
 import Navbar from './Navbar';
 import Home from './Home';
 import Bands from './Bands';
 import Recordings from './Recordings';
 import Releases from './Releases';
-import Footer from './Footer';
+// import Footer from './Footer';
 import BandEditor from './BandEditor';
 
 export default class App extends React.Component {
@@ -14,7 +14,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          <Header/>
+          {/* <Header/> */}
           <Navbar/>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -24,7 +24,7 @@ export default class App extends React.Component {
             <Route exact path="/bands/:id" component={BandEditor} />
             <Route exact path="/newband" component={BandEditor} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );
