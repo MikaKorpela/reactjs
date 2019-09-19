@@ -8,10 +8,23 @@ import Recordings from './Recordings';
 import Releases from './Releases';
 // import Footer from './Footer';
 import BandEditor from './BandEditor';
+import {useDispatch} from 'react-redux';
+import {fetchBands} from './actions/bandActions';
 
-export default class App extends React.Component {
+//export default class App extends React.Component {
+function App() {
+  
 
-  render() {
+  // componentDidMount = () => {
+  //   const dispatch = useDispatch();
+  //   dispatch(fetchBands());
+  // }
+
+  // render() {
+
+    const dispatch = useDispatch();
+    dispatch(fetchBands());
+
     return (
       <Router>
         <div>
@@ -29,5 +42,7 @@ export default class App extends React.Component {
         </div>
       </Router>
     );
-  }
+  // }
 }
+
+export default App;

@@ -1,0 +1,5 @@
+{
+  "api": { 
+    "invokeUrl": "https://jgl6lomrea.execute-api.eu-north-1.amazonaws.com/live"
+  } 
+}

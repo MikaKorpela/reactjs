@@ -21,9 +21,9 @@ export default class Bands extends Component
     }
   }
 
-  componentDidMount = () => {
-    this.fetchBands();
-  }
+  // componentDidMount = () => {
+  //   this.fetchBands();
+  // }
 
   handleDeleteBand = async (id, event) => {
     event.preventDefault();
@@ -41,6 +41,8 @@ export default class Bands extends Component
     const marginTop = {
       marginTop: '30px'
     }
+
+    this.fetchBands();
 
     return (
       <div className="container" style={{marginTop}}>
