@@ -1,9 +1,11 @@
 const bandReducer = (state = [], action) => {
-    console.log("REDUCER");
     switch(action.type) {
-        case 'FETCH_BANDS':
-            state = action.payload;
+        case 'CREATE_BAND':
+            state.push(action.payload);
             return state;
+        case 'UPDATE_BAND':
+            var bands = [...state.bands].filter(band => band.id != action.payload.id);
+            bands.push(action.payload);
         default:
             return state;
     }
