@@ -1,24 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
-import allReducers from './reducers';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import * as serviceWorker from './serviceWorker';
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-var initialBand = {
-    id: 1,
-    band_name: "Anthrax",
-    genre: "Speed Metal"
-}
-
-var initialState = [];
-initialState.push(initialBand);
-
 const store = createStore(
-    allReducers,
+    rootReducer,
     composeEnhancer(applyMiddleware(thunk))
 );
 

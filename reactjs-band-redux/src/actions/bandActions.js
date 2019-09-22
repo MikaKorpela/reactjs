@@ -16,14 +16,74 @@ const config = require('../config.json');
 //         });
 // }
 
-export const fetchBands = async () => {
-    await axios.get(`${config.api.invokeUrl}/bands}`)
-        .then(response => {
-            return {
-                type: 'FETCH_BANDS',
-                payload: response.data
-            }
+// export const fetchBands = async () => {
+//     await axios.get(`${config.api.invokeUrl}/bands}`)
+//         .then(response => {
+//             return {
+//                 type: 'FETCH_BANDS',
+//                 payload: response.data
+//             }
+//         });
+// }
+
+function loadBands() {
+  return new Promise(async resolve => {
+    await axios.get(`${config.api.invokeUrl}/bands}`, {
+	    headers: {
+	      'Access-Control-Allow-Origin': '*',
+	    }
+	  })
+      .then(response => {
+            resolve(response.data);
         });
+  });
+}
+
+function fakeLoadBands() {
+  return new Promise(resolve => {
+    setTimeout(
+      () =>
+        resolve({
+          bands: [
+            {
+              id: 0,
+              band_name: "Metallica",
+              genre: "Thrash Metal"
+            },
+            {
+              id: 1,
+              band_name: "Anthrax",
+              genre: "Speed Metal"
+            },
+            {
+              id: 2,
+              band_name: "Helloween",
+              genre: "Power Metal"
+            }
+          ]
+        }),
+      1000
+    );
+  });
+}
+
+export function fetchBands() {
+  return dispatch => {
+    return loadBands()
+      .then(json => {
+        dispatch(getBands(json.bands));
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+}
+
+export const getBands = (bands) => {
+    return {
+        type: "FETCH_BANDS",
+        payload: bands
+    }
 }
 
 export const createBand = (band) => {

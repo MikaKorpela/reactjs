@@ -1,39 +1,37 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from "react-redux";
 //import {useSelector, useDispatch} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {createBand, updateBand, deleteBand, fetchBands} from './actions/bandActions';
+//import {useDispatch} from 'react-redux';
+//import {createBand, updateBand, deleteBand, fetchBands} from './actions/bandActions';
+import {fetchBands} from './actions/bandActions';
 
-function App() {
+class App extends Component {
 
-  //const band = useSelector(state => state.band);
-  const dispatch = useDispatch();
-
-  var band = {
-    id: 1,
-    band_name: 'Metallica',
-    genre: 'Metal'
+  componentDidMount() {
+    this.props.dispatch(fetchBands());
   }
+  
+  render() {
+    
+    const { bands } = this.props;
+    console.log(this.props);
+    console.log(bands);
 
-  var updatedBand = {
-    id: 1,
-    band_name: 'Metallica',
-    genre: 'Thrash Metal'
+    return (
+      <div>
+        <h1>Hello</h1>
+          <ul>
+            {bands.map(band => (
+              <li key={band.id}>{band.band_name}</li>
+            ))}
+          </ul>
+      </div>
+    );
   }
-
-  // fetchBands()
-  //   .then(data => {
-  //     console.log(`DATA: ${data}`);
-  //   });
-
-  return (
-
-    <div>
-      <h1>Hello</h1>
-        <button onClick={() => dispatch(createBand(band))}>Create Band</button>
-        <button onClick={() => dispatch(updateBand(updatedBand))}>Update Band</button>
-        <button onClick={() => dispatch(deleteBand(updatedBand))}>Delete Band</button>
-    </div>
-  );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  bands: state.bands
+});
+
+export default connect(mapStateToProps)(App);
