@@ -8,6 +8,15 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+var initialBand = {
+    id: 1,
+    band_name: "Anthrax",
+    genre: "Speed Metal"
+}
+
+var initialState = [];
+initialState.push(initialBand);
+
 const store = createStore(
     allReducers,
     composeEnhancer(applyMiddleware(thunk))
