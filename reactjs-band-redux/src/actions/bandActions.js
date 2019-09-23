@@ -27,15 +27,15 @@ const config = require('../config.json');
 // }
 
 function loadBands() {
-  return new Promise(async resolve => {
-    await axios.get(`${config.api.invokeUrl}/bands}`, {
-	    headers: {
-	      'Access-Control-Allow-Origin': '*',
-	    }
-	  })
+  return new Promise(async (resolve, reject) => {
+    await axios.get(`${config.api.invokeUrl}/bands`)
       .then(response => {
-            resolve(response.data);
-        });
+        console.log(`AXIOS RESPONSE: ${response.data}`);
+        resolve(response.data);
+      })
+      .catch(error => {
+        reject(error);
+      })
   });
 }
 
