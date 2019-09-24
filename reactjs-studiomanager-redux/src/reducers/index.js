@@ -1,8 +1,8 @@
 import bandReducer from './bandReducer';
 import {combineReducers} from 'redux';
 
-const allReducers = combineReducers({
-    bandReducer
+const rootReducer = combineReducers({
+    bands: bandReducer
 });
 
-export default allReducers;
+export default rootReducer;

@@ -1,26 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Header from './Header';
 import Navbar from './Navbar';
 import Home from './Home';
 import Bands from './Bands';
 import Recordings from './Recordings';
 import Releases from './Releases';
-// import Footer from './Footer';
 import BandEditor from './BandEditor';
 import {useDispatch} from 'react-redux';
 import {fetchBands} from './actions/bandActions';
 
 //export default class App extends React.Component {
-function App() {
-  
+class App extends Component {
 
-  // componentDidMount = () => {
-  //   const dispatch = useDispatch();
-  //   dispatch(fetchBands());
-  // }
+  componentDidMount() {
+    this.props.dispatch(fetchBands());
+  }
 
-  // render() {
+  render() {
+    
+    const { bands } = this.props;
 
     const dispatch = useDispatch();
     dispatch(fetchBands());
