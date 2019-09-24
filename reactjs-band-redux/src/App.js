@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 //import {useSelector, useDispatch} from 'react-redux';
 //import {useDispatch} from 'react-redux';
 //import {createBand, updateBand, deleteBand, fetchBands} from './actions/bandActions';
-import {fetchBands} from './actions/bandActions';
+import {fetchBands, loadBands} from './actions/bandActions';
 
 class App extends Component {
 
+  
+
   componentDidMount() {
     this.props.dispatch(fetchBands());
+    loadBands();
   }
   
   render() {

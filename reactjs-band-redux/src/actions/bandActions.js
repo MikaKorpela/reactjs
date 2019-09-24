@@ -26,7 +26,7 @@ const config = require('../config.json');
 //         });
 // }
 
-function loadBands() {
+export function loadBands() {
   return new Promise(async (resolve, reject) => {
     await axios.get(`${config.api.invokeUrl}/bands`)
       .then(response => {
@@ -69,7 +69,7 @@ function fakeLoadBands() {
 
 export function fetchBands() {
   return dispatch => {
-    return loadBands()
+    return fakeLoadBands()
       .then(json => {
         dispatch(getBands(json.bands));
       })
