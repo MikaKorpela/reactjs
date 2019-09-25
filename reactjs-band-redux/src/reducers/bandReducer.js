@@ -1,26 +1,15 @@
 const bandReducer = (state = [], action) => {
     
-    var bands;
-
     switch(action.type) {
         case 'CREATE_BAND':
-            console.log(`CREATE_BAND reducer called`);
-            bands = Object.assign(state);
-            bands.push(action.payload);
-            return bands;
+            return Object.assign([...state, action.payload]);
         case 'UPDATE_BAND':
-                console.log(`UPDATE_BAND reducer called`);
-            bands = [...state].filter(band => band.id !== action.payload.id);
-            bands.push(action.payload);
-            return bands;
+            var bandIndex = [...state].findIndex(({ id }) => id === action.payload.id);
+            return Object.assign([...state], {[bandIndex]: action.payload});
         case 'DELETE_BAND':
-                console.log(`DELETE_BAND reducer called`);
-            bands = [...state].filter(band => band.id !== action.payload.id);
-            return bands;
+            return Object.assign([...state].filter(band => band.id !== action.payload.id));
         case 'FETCH_BANDS':
-            console.log(`FETCH_BAND reducer called`);
-            bands = action.payload;
-            return bands;
+            return action.payload;
         default:
             return state;
     }

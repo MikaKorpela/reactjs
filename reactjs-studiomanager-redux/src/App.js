@@ -7,10 +7,8 @@ import Bands from './Bands';
 import Recordings from './Recordings';
 import Releases from './Releases';
 import BandEditor from './BandEditor';
-import {useDispatch} from 'react-redux';
 import {fetchBands} from './actions/bandActions';
 
-//export default class App extends React.Component {
 class App extends Component {
 
   componentDidMount() {
@@ -18,16 +16,9 @@ class App extends Component {
   }
 
   render() {
-    
-    const { bands } = this.props;
-
-    const dispatch = useDispatch();
-    dispatch(fetchBands());
-
     return (
       <Router>
         <div>
-          {/* <Header/> */}
           <Navbar/>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -37,11 +28,12 @@ class App extends Component {
             <Route exact path="/bands/:id" component={BandEditor} />
             <Route exact path="/newband" component={BandEditor} />
           </Switch>
-          {/* <Footer /> */}
         </div>
       </Router>
     );
-  // }
+  }
 }
 
-export default App;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps)(App);

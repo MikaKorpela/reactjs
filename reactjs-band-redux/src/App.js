@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-//import {useSelector, useDispatch} from 'react-redux';
-//import {useDispatch} from 'react-redux';
-//import {createBand, updateBand, deleteBand, fetchBands} from './actions/bandActions';
 import Band from './Band';
-import {fetchBands, loadBands} from './actions/bandActions';
+import {fetchBands} from './actions/bandActions';
 
-class App extends Component {
-
-  
-
-  componentDidMount() {
+class App extends Component
+{
+  componentDidMount()
+  {
     this.props.dispatch(fetchBands());
   }
   
-  render() {
-    
+  render()
+  {
     return (
       <div>
         <h1>Hello</h1>
@@ -25,8 +21,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  //bands: state.bands
-});
+const mapStateToProps = () => ({});
 
 export default connect(mapStateToProps)(App);
