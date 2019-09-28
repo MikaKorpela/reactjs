@@ -1,29 +1,44 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import {createBand, updateBand, deleteBand} from './actions/bandActions';
+import {createBand, updateBand, deleteBand, getBand} from './actions/bandActions';
 
 class Band extends Component {
 
-  state = {
-    sband: {}
+  constructor(props) {
+    super(props);
+    console.log(`BAND CONSTRUCTOR CALLED`);
   }
+
+  band = {};
 
   componentDidMount()
   {
-    console.log(`COMPONENT MOUNTED`);
-    var id = 10;
+    console.log(`BAND COMPONENTDIDMOUNT CALLED`);
+  }
+
+  getBandThing(id) {
+    var html;
     this.props.bands.map(band => {
-      console.log(`ROUND ${band.id}`);
-      if (band.id === id) {
-        console.log(`BAND FOUND`);
-        this.setState({sband: band});
+      if (id === band.id) {
+        this.band = band;
       }
-    })
+    });
+    
+    console.log(`BAND: ${this.band.band_name}`);
+    
+    html = (
+      <div>
+        <div>Band name: {this.band.band_name}</div>
+        <div>Genre: {this.band.genre}</div>
+      </div>
+    );
+
+    return html;
   }
 
   render() {
 
-    var band = {
+    var newBand = {
       id: 99,
       band_name: "Error In Quotes",
       genre: "Punk"
@@ -35,16 +50,6 @@ class Band extends Component {
       genre: "Punk"
     }
 
-    // const foo = (id) => {
-    //   this.props.bands.map(band => {
-    //     if (band.id === id) {
-    //       queriedBand = band;
-    //     }
-    //   });
-    // }
-
-    // foo(99);
-
     return (
       <div>
         <ul>
@@ -52,11 +57,12 @@ class Band extends Component {
                 <li key={band.id}>{band.band_name}</li>
             ))}
         </ul>
-        <button onClick={() => this.props.dispatch(createBand(band))}>Create Band</button>
-        <button onClick={() => this.props.dispatch(updateBand(updatedBand))}>Update Band</button>
-        <button onClick={() => this.props.dispatch(deleteBand(updatedBand))}>Delete Band</button>
+        <button onClick={() => this.props.createBand(newBand)}>Create Band</button>
+        <button onClick={() => this.props.updateBand(this.band)}>Update Band</button>
+        <button onClick={() => this.props.deleteBand(updatedBand)}>Delete Band</button>
+        <button onClick={() => this.props.getBand(10)}>Select</button>
         <div>
-          BAND: {this.state.sband.band_name}
+          {this.getBandThing(10)}
         </div>
       </div>
     );
@@ -65,8 +71,18 @@ class Band extends Component {
 
 const mapStateToProps = state => {
   return {
-    bands: state.bands
+    bands: state.bandReducer.bands,
+    band: state.bandReducer.band
   }
 };
 
-export default connect(mapStateToProps)(Band);
+function mapDispatchToProps(dispatch) {
+  return {
+    getBand: (id) => dispatch(getBand(id)),
+    createBand: (band) => dispatch(createBand(band)),
+    updateBand: (band) => dispatch(updateBand(band)),
+    deleteBand: (band) => dispatch(deleteBand(band))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Band);

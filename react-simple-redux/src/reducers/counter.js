@@ -1,4 +1,4 @@
-const counterReducer = (state = 0, action) => {
+const counterReducer = (state =50, action) => {
     switch(action.type) {
         case 'INCREMENT':
             var foo = state + action.payload;

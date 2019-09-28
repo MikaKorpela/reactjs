@@ -5,8 +5,9 @@ import {fetchBands} from './actions/bandActions';
 
 class App extends Component
 {
-  componentDidMount()
-  {
+  constructor(props) {
+    super(props);
+    console.log(`APP CONSTRUCTOR CALLED`);
     this.props.dispatch(fetchBands());
   }
   
@@ -21,6 +22,11 @@ class App extends Component
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  return {
+    bands: state.bandReducer.bands
+  }
+};
 
 export default connect(mapStateToProps)(App);
+
