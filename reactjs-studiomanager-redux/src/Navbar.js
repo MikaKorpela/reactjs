@@ -6,7 +6,6 @@ export default class Navbar extends Component
   render() {
     return (
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a className="navbar-brand" href="/home">Studio Manager</a>
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             <li className="nav-item">

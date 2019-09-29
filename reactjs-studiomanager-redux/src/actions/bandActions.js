@@ -1,123 +1,53 @@
 import axios from "axios";
 const config = require('../config.json');
 
-/**
- * Create band.
- * 
- * @param {*} band_name 
- * @param {*} genre 
- */
-export const createBand = (band_name, genre) => {
-    
-    const params = {
-        band_name: band_name,
-        genre: genre
-    };
-    
-    axios.post(`${config.api.invokeUrl}/bands`, params)
-        .then(response => {
-            
-            const band = response.data;
-
-            return {
-                type: 'CREATE_BAND',
-                payload: band
-            }
-        })
-        .catch(error => {
-            throw(error);
-        });
-}
-
-/**
- * Upate band.
- * 
- * @param {*} id 
- * @param {*} band_name 
- * @param {*} genre 
- */
-export const updateBand = (id, band_name, genre) => {
-    
-    const params = {
-        id: id,
-        band_name: band_name,
-        genre: genre
-    };
-
-    axios.put(`${config.api.invokeUrl}/bands/${id}`, params)
-        .then(response => {
-
-            const band = response.data;
-
-            return {
-                type: 'UPDATE_BAND',
-                payload: band
-            }
-        })
-        .catch(error => {
-            throw(error);
-        });
-}
-
-/**
- * Delete band.
- * 
- * @param {*} id 
- */
-export const deleteBand = (id) => {
-
-    axios.delete(`${config.api.invokeUrl}/bands/${id}`)
-        .then(() => {
-            return {
-                type: 'DELETE_BAND',
-                payload: id
-            }
-        })
-        .catch(error => {
-            throw(error);
-        });
-}
-
-/**
- * Get band.
- * 
- * @param {*} id 
- */
-export const getBand = (id) => {
-
-    return {
-        type: 'GET_BAND',
-        payload: id
-    }
-}
-
-/**
- * Fetch bands.
- * 
- */
-export const fetchBands = async () => {
-    console.log("FETCH BANDS");
-    
-    var bands;
-    
+export const getBands = async () => {
+  console.log(`GET BANDS ACTION CALLED`);
+  
+  return async dispatch => {
     await axios.get(`${config.api.invokeUrl}/bands`)
-        .then(response => {
-            console.log(`RES: ${response.data}`);
-            bands = response.data;
-            console.log(`BANDS: ${bands}`);
-            // return {
-            //     type: 'FETCH_BANDS',
-            //     payload: bands
-            // }
-        })
-        .catch(error => {
-            throw(error);
-        });
-    
-    console.log("DONE WITH AXIOS");
-    return {
-        type: 'FETCH_BANDS',
-        payload: bands
-    }
+      .then(response => {
+        dispatch({type: 'GET_BANDS', payload: response.data});
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
 }
 
+export const createBand = (band) => {
+  console.log(`CREATE BAND ACTION CALLED`);
+
+  return async dispatch => {
+    const params = {
+      band_name: band.band_name,
+      genre: band.genre
+    }
+
+    await axios.post(`${config.api.invokeUrl}/bands`, params)
+      .then(response => {
+        dispatch({type: 'CREATE_BAND', payload: response.data});
+      })
+      .catch(error => {
+        throw error
+      })
+  };
+}
+
+export const updateBand = (band) => {
+  console.log(`UPDATE BAND ACTION CALLED`);
+
+  return {
+    type: 'UPDATE_BAND',
+    payload: band
+  }
+}
+
+export const deleteBand = (band) => {
+  console.log(`DELETE BAND ACTION CALLED`);
+
+  return {
+    type: 'DELETE_BAND',
+    payload: band
+  }
+}

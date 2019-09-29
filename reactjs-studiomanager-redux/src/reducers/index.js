@@ -2,7 +2,7 @@ import bandReducer from './bandReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-    bands: bandReducer
+    bandReducer
 });
 
 export default rootReducer;

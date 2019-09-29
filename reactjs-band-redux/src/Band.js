@@ -1,43 +1,27 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import {createBand, updateBand, deleteBand, getBand} from './actions/bandActions';
+import {createBand, updateBand, deleteBand} from './actions/bandActions';
 
 class Band extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log(`BAND CONSTRUCTOR CALLED`);
-  }
-
-  band = {};
-
-  componentDidMount()
-  {
-    console.log(`BAND COMPONENTDIDMOUNT CALLED`);
-  }
+  band = {}
 
   getBandThing(id) {
-    var html;
-    this.props.bands.map(band => {
-      if (id === band.id) {
-        this.band = band;
-      }
-    });
+    console.log(`GET BAND THINGS CALLED`);
+    this.band = this.props.bands.find(band => band.id === id);
     
-    console.log(`BAND: ${this.band.band_name}`);
-    
-    html = (
-      <div>
-        <div>Band name: {this.band.band_name}</div>
-        <div>Genre: {this.band.genre}</div>
-      </div>
-    );
-
-    return html;
+    if (this.band !== undefined) {
+      return (
+        <div>
+          <div>Band name: {this.band.band_name}</div>
+          <div>Genre: {this.band.genre}</div>
+        </div>
+      );
+    }
   }
 
   render() {
-
+    
     var newBand = {
       id: 99,
       band_name: "Error In Quotes",
@@ -58,9 +42,8 @@ class Band extends Component {
             ))}
         </ul>
         <button onClick={() => this.props.createBand(newBand)}>Create Band</button>
-        <button onClick={() => this.props.updateBand(this.band)}>Update Band</button>
+        <button onClick={() => this.props.updateBand(updatedBand)}>Update Band</button>
         <button onClick={() => this.props.deleteBand(updatedBand)}>Delete Band</button>
-        <button onClick={() => this.props.getBand(10)}>Select</button>
         <div>
           {this.getBandThing(10)}
         </div>
@@ -71,14 +54,12 @@ class Band extends Component {
 
 const mapStateToProps = state => {
   return {
-    bands: state.bandReducer.bands,
-    band: state.bandReducer.band
+    bands: state.bandReducer.bands
   }
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBand: (id) => dispatch(getBand(id)),
     createBand: (band) => dispatch(createBand(band)),
     updateBand: (band) => dispatch(updateBand(band)),
     deleteBand: (band) => dispatch(deleteBand(band))

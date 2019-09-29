@@ -1,38 +1,32 @@
-//const initialState = [];
-
-const initialState = {bands: [], band: {}};
+const initialState = {
+    bands: []
+};
 
 const bandReducer = (state = initialState, action) => {
     
     switch(action.type) {
-        case 'GET_BAND':
-            return {
-                bands: Object.assign([...state.bands]),
-                band: Object.assign([...state.bands].filter(band => band.id === action.payload))[0]
-            }
         case 'CREATE_BAND':
-            console.log([...state.bands]);
+            console.log(`CREATE BAND REDUCER CALLED`);
+            console.log(`STATE: ${[...state.bands]}`);
+            console.log(`PAYLOAD: ${action.payload.band_name}`);
             return {
-                bands: Object.assign([...state.bands, action.payload]),
-                band: {}
+                bands: Object.assign([...state.bands, action.payload])
             }
         case 'UPDATE_BAND':
+            console.log(`UPDATE BAND REDUCER CALLED`);
             var bandIndex = [...state.bands].findIndex(({ id }) => id === action.payload.id);
             return {
-                bands: Object.assign([...state.bands], {[bandIndex]: action.payload}),
-                band: {}
+                bands: Object.assign([...state.bands], {[bandIndex]: action.payload})
             }
         case 'DELETE_BAND':
+            console.log(`DELETE BAND REDUCER CALLED`);
             return {
-                bands: Object.assign([...state.bands].filter(band => band.id !== action.payload.id)),
-                band: {}
+                bands: Object.assign([...state.bands].filter(band => band.id !== action.payload.id))
             }
-        case 'FETCH_BANDS':
-            console.log(`FETCH REDUCER CALLED`);
-            console.log(`PAYLOAD: ${action.payload}`);
+        case 'GET_BANDS':
+            console.log(`GET BANDS REDUCER CALLED`);
             return {
-                bands: action.payload,
-                band: {}
+                bands: action.payload
             }
         default:
             return state;

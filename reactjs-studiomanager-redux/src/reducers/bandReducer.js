@@ -1,51 +1,31 @@
-const bandReducer = (state = {bands: [], band: {}}, action) => {
-    switch(action.type) {
-        case 'CREATE_BAND':
-            state.bands.push(action.payload);
-            return state;
-        case 'UPDATE_BAND':
-            state.bands = [...state.bands].filter(band => band.id !== action.payload.id);
-            state.bands.push(action.payload);
-            return state;
-        case 'DELETE_BAND':
-            state.bands = [...state.bands].filter(band => band.id !== action.payload.id);
-            return state;
-        case 'GET_BAND':
-            state.band = [...state.bands].find(band => band.id === action.payload.id);
-            return state;
-        case 'FETCH_BANDS':
-            state.bands = action.payload;
-            return state;
-        default:
-            return state;
-    }
-}
+const initialState = {
+    bands: []
+};
 
-export default bandReducer;
-
-const bandReducer = (state = [], action) => {
+const bandReducer = (state = initialState, action) => {
     
-    var bands;
-
     switch(action.type) {
         case 'CREATE_BAND':
-            console.log(`CREATE_BAND reducer called`);
-            bands = Object.assign(state);
-            bands.push(action.payload);
-            return bands;
+            console.log(`CREATE BAND REDUCER CALLED`);
+            return {
+                bands: Object.assign([...state.bands, action.payload])
+            }
         case 'UPDATE_BAND':
-                console.log(`UPDATE_BAND reducer called`);
-            bands = [...state].filter(band => band.id !== action.payload.id);
-            bands.push(action.payload);
-            return bands;
+            console.log(`UPDATE BAND REDUCER CALLED`);
+            var bandIndex = [...state.bands].findIndex(({ id }) => id === action.payload.id);
+            return {
+                bands: Object.assign([...state.bands], {[bandIndex]: action.payload})
+            }
         case 'DELETE_BAND':
-                console.log(`DELETE_BAND reducer called`);
-            bands = [...state].filter(band => band.id !== action.payload.id);
-            return bands;
-        case 'FETCH_BANDS':
-            console.log(`FETCH_BAND reducer called`);
-            bands = action.payload;
-            return bands;
+            console.log(`DELETE BAND REDUCER CALLED`);
+            return {
+                bands: Object.assign([...state.bands].filter(band => band.id !== action.payload.id))
+            }
+        case 'GET_BANDS':
+            console.log(`GET BANDS REDUCER CALLED`);
+            return {
+                bands: action.payload
+            }
         default:
             return state;
     }

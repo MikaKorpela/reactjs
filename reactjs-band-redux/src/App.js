@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import Band from './Band';
-import {fetchBands} from './actions/bandActions';
+import {getBands} from './actions/bandActions';
 
 class App extends Component
 {
   constructor(props) {
     super(props);
     console.log(`APP CONSTRUCTOR CALLED`);
-    this.props.dispatch(fetchBands());
+    this.props.dispatch(getBands());
   }
   
   render()
@@ -29,4 +29,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(App);
-
